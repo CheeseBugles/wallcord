@@ -136,7 +136,7 @@ impl SidePanel {
             image
                 .status
                 .is_faild()
-                .then(|| state.tasks.images.remove(index));
+                .then(|| state.tasks.images.get(index).is_some().then(|| state.tasks.images.remove(index)));
             image.status.is_loading().then(|| {
                 self.spinner_with_label(
                     ui,
